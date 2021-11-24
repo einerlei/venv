@@ -1,0 +1,38 @@
+if [[ ! -d $HOME/.venv ]]; then
+  mkdir $HOME/.venv
+fi
+
+case "$1" in
+  "")
+    for i in $(/bin/ls $HOME/.venv/); do echo $i; done
+    ;;
+  create)
+    if [[ $2 == "" ]]; then
+      echo "$0 create [name]"
+    elif [[ -d "$HOME/.venv/$2" ]]; then
+      echo "venv already exists!"
+    else
+      python3 -m venv $HOME/.venv/$2
+    fi
+    ;;
+  delete)
+    if [[ $2 == "" ]]; then
+      echo "$0 create [name]"
+    elif [[ -d "$HOME/.venv/$2" ]]; then
+      rm -r "$HOME/.venv/$2"
+      #if [[ "$CURRENT_VENV" == "$2" ]]; then
+        echo "You should now run: deactivate"
+      #fi
+    else
+      echo "venv does not exist!"
+    fi
+    ;;
+  *)
+    if [[ -d $HOME/.venv/$1 ]]; then
+      source "$HOME/.venv/$1/bin/activate"
+    else
+      echo venv $1 does not exist!
+    fi
+  ;;
+esac
+
