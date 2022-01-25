@@ -12,6 +12,6 @@ alias venv='. _venv'
 
 ## Usage
 ```sh
-venv [create/delete] [name]
+venv [create|delete] [name]
 ```
 

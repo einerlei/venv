@@ -27,6 +27,9 @@ case "$1" in
       echo "venv does not exist!"
     fi
     ;;
+  help)
+    echo "venv [create|delete] [name]"
+    ;;
   *)
     if [[ -d $HOME/.venv/$1 ]]; then
       source "$HOME/.venv/$1/bin/activate"
